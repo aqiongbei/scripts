@@ -1,14 +1,18 @@
 console.log('content js loaded');
-let sc = document.createElement('script');
-sc.setAttribute('type', 'text/javascript');
-sc.innerHTML = `
-console.log('get page value')
-let el = document.createElement('p');
-el.setAttribute('id', 'value_text');
-el.innerText = window.location.href;
-document.body.appendChild(el);`;
-document.body.appendChild(sc);
+function opDOM () {
+    console.log(document);
+    document.body.style.background = 'red';
+    document.addEventListener("click", function(){
+        sayHi();
+    });
+}
 
-setTimeout( () => {
-    console.log(document.querySelector('#value_text').innerText)
-}, 2000)
+console.log(chrome)
+function sayHi (msg) {
+    chrome.runtime.sendMessage('msg')
+}
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+    console.log('content.js recive msg:', request, sender);
+    opDOM();
+    // sendResponse({msg: 'hello from content.js'});
+})

@@ -1,0 +1,2 @@
+- 用node代码根据相册id列表,遍历相册内包含的照片,生成${albumid}.txt文件,文件内为相册内照片的地址.
+- 用mac的automator workflow根据文件来读取url,根据url下载照片
